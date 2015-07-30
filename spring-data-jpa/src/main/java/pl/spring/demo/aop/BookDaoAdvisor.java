@@ -13,21 +13,20 @@ import pl.spring.demo.to.IdAware;
 
 @Component
 public class BookDaoAdvisor implements MethodBeforeAdvice {
+	private boolean changeID = false;
 
 	@Override
 	public void before(Method method, Object[] objects, Object o) throws Throwable {
 
 		if (hasAnnotation(method, o, NullableId.class)) {
-			checkNotNullId(o, method, objects[0]);
+			checkNotNullId(objects[0]);
+			saveInAspect(method, objects[0], o);
 		}
 	}
 
-	private void checkNotNullId(Object o, Method method, Object objects) {
+	private void checkNotNullId(Object o) {
 		if (o instanceof IdAware && ((IdAware) o).getId() != null) {
 			throw new BookNotNullIdException();
-		
-			((BookTo) objects).setId(((BookDaoImpl) o).getNextIdFromSequence());
-			((BookDaoImpl) o).getALL_BOOKS().add((BookTo) objects);
 		}
 	}
 
@@ -39,5 +38,13 @@ public class BookDaoAdvisor implements MethodBeforeAdvice {
 					.getAnnotation(annotationClazz) != null;
 		}
 		return hasAnnotation;
+	}
+
+	public void saveInAspect(Method method, Object objects, Object o) { // save
+																		// delt
+																		// in
+																		// Aspect
+		((BookTo) objects).setId(((BookDaoImpl) o).getNextIdFromSequence());
+		((BookDaoImpl) o).getALL_BOOKS().add((BookTo) objects);
 	}
 }
