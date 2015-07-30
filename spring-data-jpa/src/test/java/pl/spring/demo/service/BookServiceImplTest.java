@@ -56,4 +56,5 @@ public class BookServiceImplTest {
 		// then
 		fail("test should throw BookNotNullIdException");
 	}
+
 }

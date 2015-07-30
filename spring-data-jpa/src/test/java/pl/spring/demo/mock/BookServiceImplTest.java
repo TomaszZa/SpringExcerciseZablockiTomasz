@@ -5,14 +5,18 @@ package pl.spring.demo.mock;
  * All rights reserved
  */
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
 import pl.spring.demo.dao.BookDao;
 import pl.spring.demo.service.impl.BookServiceImpl;
 import pl.spring.demo.to.BookTo;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * TODO The class BookServiceImplTest is supposed to be documented...
@@ -21,25 +25,27 @@ import static org.junit.Assert.assertEquals;
  */
 public class BookServiceImplTest {
 
-    @InjectMocks
-    private BookServiceImpl bookService;
-    @Mock
-    private BookDao bookDao;
+	@InjectMocks
+	private BookServiceImpl bookService;
+	@Mock // dla javy ze mock
+	private BookDao bookDao;
 
-    @Before
-    public void setUpt() {
-        MockitoAnnotations.initMocks(this);
-    }
+	@Before
+	public void setUpt() {
+		MockitoAnnotations.initMocks(this);
+	}
 
-    @Test
-    public void testShouldSaveBook() {
-        // given
-        BookTo book = new BookTo(null, "title", "author");
-        Mockito.when(bookDao.save(book)).thenReturn(new BookTo(1L, "title", "author"));
-        // when
-        BookTo result = bookService.saveBook(book);
-        // then
-        Mockito.verify(bookDao).save(book);
-        assertEquals(1L, result.getId().longValue());
-    }
+	@Test
+	public void testShouldSaveBook() {
+		// given
+		BookTo book = new BookTo(null, "title", "author");
+		Mockito.when(bookDao.save(book)).thenReturn(new BookTo(1L, "title", "author")); // metoda
+																						// mock
+		// when
+		BookTo result = bookService.saveBook(book);
+		// then
+		Mockito.verify(bookDao).save(book);
+		assertEquals(1L, result.getId().longValue());
+	}
+
 }
