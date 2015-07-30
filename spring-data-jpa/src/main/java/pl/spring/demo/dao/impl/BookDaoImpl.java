@@ -45,8 +45,8 @@ public class BookDaoImpl implements BookDao {
 		this.sequence = sequence;
 	}
 
-	public Sequence getSequence() {
-		return sequence;
+	public long getNextIdFromSequence() {
+		return sequence.nextValue(ALL_BOOKS);
 	}
 
 	public Set<BookTo> getALL_BOOKS() {

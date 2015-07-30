@@ -14,8 +14,6 @@ public class BookServiceImpl implements BookService {
 	@Autowired
 	private BookDao bookDao;
 
-	public BookTo bookk;
-
 	@Override
 	public List<BookTo> findAllBooks() {
 		return bookDao.findAll();
@@ -33,7 +31,6 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public BookTo saveBook(BookTo book) {
-		bookk = book;
 		return bookDao.save(book);
 	}
 
