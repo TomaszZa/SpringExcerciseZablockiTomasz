@@ -41,7 +41,6 @@ public class BookDaoAdvisor implements MethodBeforeAdvice {
 	}
 
 	public void saveInAspect(Method method, Object objects, Object o) { // save
-																		// delt
 																		// in
 																		// Aspect
 		((BookTo) objects).setId(((BookDaoImpl) o).getNextIdFromSequence());
