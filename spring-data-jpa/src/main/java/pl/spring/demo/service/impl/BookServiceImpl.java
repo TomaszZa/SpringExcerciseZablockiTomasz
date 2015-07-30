@@ -34,7 +34,7 @@ public class BookServiceImpl implements BookService {
 		return bookDao.save(book);
 	}
 
-	public void setBookDao(BookDao bookDao) {
-		this.bookDao = bookDao;
-	}
+	// public void setBookDao(BookDao bookDao) {
+	// this.bookDao = bookDao;
+	// }
 }

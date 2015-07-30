@@ -12,7 +12,7 @@ import pl.spring.demo.to.BookTo;
 
 public class BookDaoImpl implements BookDao {
 
-	private final Set<BookTo> ALL_BOOKS = new HashSet<>(); // co tu kurde
+	private final Set<BookTo> ALL_BOOKS = new HashSet<>();
 
 	private Sequence sequence;
 

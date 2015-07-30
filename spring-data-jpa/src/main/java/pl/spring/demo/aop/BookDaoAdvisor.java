@@ -13,7 +13,6 @@ import pl.spring.demo.to.IdAware;
 
 @Component
 public class BookDaoAdvisor implements MethodBeforeAdvice {
-	private boolean changeID = false;
 
 	@Override
 	public void before(Method method, Object[] objects, Object o) throws Throwable {
