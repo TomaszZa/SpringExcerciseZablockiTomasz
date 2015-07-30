@@ -29,7 +29,6 @@
         <property name="interceptorNames">
             <list>
                 <value>bookDaoAdvisor</value>
-                <value>changeIDAspect</value>
             </list>
         </property>
     </bean>
