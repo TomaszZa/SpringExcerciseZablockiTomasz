@@ -1,6 +1,6 @@
 package pl.spring.demo.service;
 
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +26,6 @@ public class BookServiceImplSaveTest {
 		// use save
 		BookTo result = bookDao.save(book);
 		// check ID
-		assertNotEquals(null, result.getId().longValue());
+		assertNotNull(result.getId().longValue());
 	}
 }
