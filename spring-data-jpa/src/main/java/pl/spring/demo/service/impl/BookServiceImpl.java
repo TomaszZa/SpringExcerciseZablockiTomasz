@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.spring.demo.dao.BookDao;
+import pl.spring.demo.mapper.Mapper;
 import pl.spring.demo.service.BookService;
 import pl.spring.demo.to.BookTo;
 
@@ -13,6 +14,8 @@ import pl.spring.demo.to.BookTo;
 public class BookServiceImpl implements BookService {
 	@Autowired
 	private BookDao bookDao;
+	@Autowired
+	private Mapper mapper;
 
 	@Override
 	public List<BookTo> findAllBooks() {
@@ -31,11 +34,6 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public BookTo saveBook(BookTo book) {
-		// mapper
 		return bookDao.save(book);
 	}
-
-	// public void setBookDao(BookDao bookDao) {
-	// this.bookDao = bookDao;
-	// }
 }
