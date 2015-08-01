@@ -2,6 +2,7 @@ package pl.spring.demo.dao.impl;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -28,11 +29,13 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public List<BookEntity> findBookByTitle(String title) {
-		return null;
+		Iterator iterator = ALL_BOOKS.iterator();
+		return sequence.checkTitle(title, iterator);
 	}
 
 	@Override
-	public List<BookEntity> findBooksByAuthor(String author) {
+	public List<BookEntity> findBooksByAuthor(String author) { // notready !!
+
 		return null;
 	}
 
