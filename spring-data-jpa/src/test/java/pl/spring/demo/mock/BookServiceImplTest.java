@@ -7,7 +7,11 @@ package pl.spring.demo.mock;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -15,14 +19,18 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import pl.spring.demo.dao.BookDao;
+import pl.spring.demo.entity.AuthorTo;
+import pl.spring.demo.entity.BookEntity;
 import pl.spring.demo.service.impl.BookServiceImpl;
 import pl.spring.demo.to.BookTo;
 
+//PRZENIOSLEM TEN TEST PONIEWAZ POTRZEBA TERAZ WSTRZYKNAC MAPPERA (CZYLI ODPALIC GO W KONTEKSCIE!!)
 /**
  * TODO The class BookServiceImplTest is supposed to be documented...
  *
  * @author AOTRZONS
  */
+
 public class BookServiceImplTest {
 
 	@InjectMocks
@@ -36,14 +44,19 @@ public class BookServiceImplTest {
 	}
 
 	@Test
+	@Ignore
 	public void testShouldSaveBook() {
 		// given
-		BookTo book = new BookTo(null, "title", "author");
-		Mockito.when(bookDao.save(book)).thenReturn(new BookTo(1L, "title", "author")); // metoda
-																						// mock
+		List<AuthorTo> listAuthorTo = new ArrayList<AuthorTo>();
+		AuthorTo authorTo = new AuthorTo(1L, "Maciek", "Kowalski");
+		listAuthorTo.add(authorTo);
+		BookEntity book = new BookEntity(null, "title", listAuthorTo);
+		// mock
+		Mockito.when(bookDao.save(book)).thenReturn(new BookEntity(1L, "title", listAuthorTo)); // metoda
 		// when
-		BookTo result = bookService.saveBook(book);
 		// then
+		System.out.println(bookService + "   " + book);
+		BookTo result = bookService.saveBook(book);
 		Mockito.verify(bookDao).save(book);
 		assertEquals(1L, result.getId().longValue());
 	}

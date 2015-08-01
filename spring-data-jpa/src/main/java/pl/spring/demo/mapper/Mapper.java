@@ -37,6 +37,20 @@ public class Mapper {
 		return bookEntity;
 	}
 
+	public List<BookTo> getListBookTo(List<BookEntity> bookEntity) {
+		List<BookTo> tempBookToList = new ArrayList<BookTo>();
+		for (int i = 0; i < bookEntity.size(); i++)
+			tempBookToList.add(getBookTo(bookEntity.get(i)));
+		return tempBookToList;
+	}
+
+	public List<BookEntity> getListBookEntity(List<BookTo> bookTo) {
+		List<BookEntity> tempBookEntityList = new ArrayList<BookEntity>();
+		for (int i = 0; i < bookTo.size(); i++)
+			tempBookEntityList.add(getBookEntity(bookTo.get(i)));
+		return tempBookEntityList;
+	}
+
 	private void changeStringAuthorsToListAuthorTo(BookTo bookTo) {
 		char charTemp = 0;
 		boolean changeWord = true;
@@ -56,7 +70,7 @@ public class Mapper {
 
 			if (changeWord && firstName.length() != 0 && lastName.length() != 0) {
 
-				authors.add(new AuthorTo(new Long(new Long(authorID++)), firstName, lastName));
+				authors.add(new AuthorTo(new Long(authorID++), firstName, lastName));
 				firstName = "";
 				lastName = "";
 			}

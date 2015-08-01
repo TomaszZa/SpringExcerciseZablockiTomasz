@@ -8,11 +8,12 @@ import java.util.Set;
 import pl.spring.demo.annotation.NullableId;
 import pl.spring.demo.common.Sequence;
 import pl.spring.demo.dao.BookDao;
-import pl.spring.demo.to.BookTo;
+import pl.spring.demo.entity.AuthorTo;
+import pl.spring.demo.entity.BookEntity;
 
 public class BookDaoImpl implements BookDao {
 
-	private final Set<BookTo> ALL_BOOKS = new HashSet<>();
+	private final Set<BookEntity> ALL_BOOKS = new HashSet<>();
 
 	private Sequence sequence;
 
@@ -21,23 +22,23 @@ public class BookDaoImpl implements BookDao {
 	}
 
 	@Override
-	public List<BookTo> findAll() {
+	public List<BookEntity> findAll() {
 		return new ArrayList<>(ALL_BOOKS);
 	}
 
 	@Override
-	public List<BookTo> findBookByTitle(String title) {
+	public List<BookEntity> findBookByTitle(String title) {
 		return null;
 	}
 
 	@Override
-	public List<BookTo> findBooksByAuthor(String author) {
+	public List<BookEntity> findBooksByAuthor(String author) {
 		return null;
 	}
 
 	@Override
 	@NullableId
-	public BookTo save(BookTo book) {
+	public BookEntity save(BookEntity book) {
 		return book;
 	}
 
@@ -49,16 +50,29 @@ public class BookDaoImpl implements BookDao {
 		return sequence.nextValue(ALL_BOOKS);
 	}
 
-	public Set<BookTo> getALL_BOOKS() {
+	public Set<BookEntity> getALL_BOOKS() {
 		return ALL_BOOKS;
 	}
 
 	private void addTestBooks() {
-		ALL_BOOKS.add(new BookTo(1L, "Romeo i Julia", "Wiliam Szekspir"));
-		ALL_BOOKS.add(new BookTo(2L, "Opium w rosole", "Hanna Ożogowska"));
-		ALL_BOOKS.add(new BookTo(3L, "Przygody Odyseusza", "Jan Parandowski"));
-		ALL_BOOKS.add(new BookTo(4L, "Awantura w Niekłaju", "Edmund Niziurski"));
-		ALL_BOOKS.add(new BookTo(5L, "Pan Samochodzik i Fantomas", "Zbigniew Nienacki"));
-		ALL_BOOKS.add(new BookTo(6L, "Zemsta", "Aleksander Fredro"));
+		List<AuthorTo> one = new ArrayList<AuthorTo>();
+		one.add(new AuthorTo(1L, "Wiliam", "Szekspir"));
+		List<AuthorTo> two = new ArrayList<AuthorTo>();
+		two.add(new AuthorTo(2L, "Hanna", "Ożogowska"));
+		List<AuthorTo> three = new ArrayList<AuthorTo>();
+		three.add(new AuthorTo(3L, "Jan", "Parandowski"));
+		List<AuthorTo> four = new ArrayList<AuthorTo>();
+		four.add(new AuthorTo(4L, "Edmund", "Niziurski"));
+		List<AuthorTo> five = new ArrayList<AuthorTo>();
+		five.add(new AuthorTo(5L, "Zbigniew", "Nienacki"));
+		List<AuthorTo> six = new ArrayList<AuthorTo>();
+		six.add(new AuthorTo(6L, "Aleksander", "Fredro"));
+
+		ALL_BOOKS.add(new BookEntity(1L, "Romeo i Julia", one));
+		ALL_BOOKS.add(new BookEntity(2L, "Opium w rosole", two));
+		ALL_BOOKS.add(new BookEntity(3L, "Przygody Odyseusza", three));
+		ALL_BOOKS.add(new BookEntity(4L, "Awantura w Niekłaju", four));
+		ALL_BOOKS.add(new BookEntity(5L, "Pan Samochodzik i Fantomas", five));
+		ALL_BOOKS.add(new BookEntity(6L, "Zemsta", six));
 	}
 }
