@@ -34,13 +34,13 @@ import pl.spring.demo.to.BookTo;
 public class BookServiceImplTest {
 
 	@InjectMocks
-	private BookServiceImpl bookService;
-	@Mock // dla javy ze mock
-	private BookDao bookDao;
+	private BookServiceImpl bookService; // Class where I inject mock
+	@Mock
+	private BookDao bookDao; // Mock class
 
 	@Before
 	public void setUpt() {
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.initMocks(this); // inicjalization classes for mock
 	}
 
 	@Test
@@ -53,11 +53,12 @@ public class BookServiceImplTest {
 		BookEntity book = new BookEntity(null, "title", listAuthorTo);
 		// mock
 		Mockito.when(bookDao.save(book)).thenReturn(new BookEntity(1L, "title", listAuthorTo)); // metoda
-		// when
+		// when method for such class appear then this new class is returned by
+		// this method
 		// then
 		System.out.println(bookService + "   " + book);
 		BookTo result = bookService.saveBook(book);
-		Mockito.verify(bookDao).save(book);
+		Mockito.verify(bookDao).save(book); // mock veryfication
 		assertEquals(1L, result.getId().longValue());
 	}
 

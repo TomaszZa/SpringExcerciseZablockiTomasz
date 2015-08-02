@@ -35,8 +35,8 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public List<BookEntity> findBooksByAuthor(String author) { // notready !!
-
-		return null;
+		Iterator iterator = ALL_BOOKS.iterator();
+		return sequence.checkAuthors(author, iterator);
 	}
 
 	@Override

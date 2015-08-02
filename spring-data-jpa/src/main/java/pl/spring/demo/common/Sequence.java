@@ -39,20 +39,24 @@ public class Sequence {
 		return bookEntityList;
 	}
 
-	public List<BookEntity> checkAuthors(String title, Iterator iterator) { // notready
-																			// !
+	public List<BookEntity> checkAuthors(String author, Iterator iterator) {
 		List<BookEntity> bookEntityList = new ArrayList<BookEntity>();
 		BookEntity bookEntity = null;
-		String titleFromSet;
+		String firstNameFromSet;
+		String lastNameFromSet;
 
 		while (iterator.hasNext()) {
 			bookEntity = (BookEntity) iterator.next();
-			titleFromSet = bookEntity.getTitle();
-			if (title.contains(titleFromSet))
-				bookEntityList.add(bookEntity);
+			for (int i = 0; i < bookEntity.getAuthors().size(); i++) {
+				firstNameFromSet = bookEntity.getAuthors().get(i).getFirstName();
+				lastNameFromSet = bookEntity.getAuthors().get(i).getLastName();
+				if (author.contains(firstNameFromSet) && author.contains(lastNameFromSet))
+					bookEntityList.add(bookEntity);
+			}
 		}
 		if (bookEntityList.size() == 0)
 			return null;
 		return bookEntityList;
 	}
+
 }
