@@ -31,7 +31,7 @@ public class Sequence {
 		while (iterator.hasNext()) {
 			bookEntity = (BookEntity) iterator.next();
 			titleFromSet = bookEntity.getTitle();
-			if (title.contains(titleFromSet))
+			if (title.matches(titleFromSet))
 				bookEntityList.add(bookEntity);
 		}
 		if (bookEntityList.size() == 0)

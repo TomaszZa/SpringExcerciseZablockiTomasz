@@ -58,7 +58,8 @@ public class BookServiceImplTest {
 		// then
 		System.out.println(bookService + "   " + book);
 		BookTo result = bookService.saveBook(book);
-		Mockito.verify(bookDao).save(book); // mock veryfication
+		Mockito.verify(bookDao).save(book); // mock veryfication (probably if
+											// save is called once)
 		assertEquals(1L, result.getId().longValue());
 	}
 
