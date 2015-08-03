@@ -18,6 +18,8 @@ public class Mapper {
 	long authorID = 1;
 
 	public BookTo getBookTo(BookEntity bookEntity) {
+		if (bookEntity == null)
+			return null;
 		changeListAuthorToToStringAuthors(bookEntity);
 
 		bookTo.setTitle(bookEntity.getTitle());
@@ -28,6 +30,8 @@ public class Mapper {
 	}
 
 	public BookEntity getBookEntity(BookTo bookTo) {
+		if (bookTo == null)
+			return null;
 		changeStringAuthorsToListAuthorTo(bookTo);
 
 		bookEntity.setTitle(bookTo.getTitle());
